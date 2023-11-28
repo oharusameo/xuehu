@@ -1,0 +1,13 @@
+knife4j:
+  enable: true #开启增强
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: template-API文档
+  name: harusame
+  url: https://github.com/oharusameo
+  email: ggzst321@outlook.com
+  basic:
+    username: ggzst321
+    password: ggzst321
+#    enable: true
+

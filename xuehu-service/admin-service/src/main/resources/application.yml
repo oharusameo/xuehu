@@ -1,0 +1,56 @@
+knife4j:
+  enable: true #开启增强
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: template-API文档
+  basePackage: com.harusame.template.api
+  name: harusame
+  url: https://github.com/oharusameo
+  email: ggzst321@outlook.com
+  basic:
+    username: ggzst321
+    password: ggzst321
+#    enable: true
+
+
+server:
+  jetty:
+    threads:
+      #acceptors线程池用于接收http请求
+      acceptors: 4
+      #selectors线程池用于处理http数据包
+      selectors: 8
+      #worker线程池负责调用web业务方法
+      min: 8
+      max: 16
+  port: 8083
+  servlet:
+    #注意！这里还是配置为“/”，否则后续访问swagger接口时，需要多设置这部分的地址
+    context-path: /
+
+mybatis-plus:
+  type-aliases-package: com.harusame.template.domain
+  global-config:
+    db-config:
+      #全局删除字段
+      logic-delete-field: status
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #standand 标准输出
+
+feign:
+  client:
+    config:
+      order-service:
+        logger-level: basic
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 #每个路径的最大连接数
+  sentinel:
+    enabled: true # 开启feign对sentinel的支持
+
+
+
+
