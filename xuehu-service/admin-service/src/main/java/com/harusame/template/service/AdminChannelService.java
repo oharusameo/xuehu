@@ -1,7 +1,13 @@
 package com.harusame.template.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.harusame.template.domain.dto.AddChannelDTO;
+import com.harusame.template.domain.dto.ChangeChannelOrderDTO;
+import com.harusame.template.domain.dto.ChangeChannelStatusDTO;
+import com.harusame.template.domain.dto.QueryChannelDTO;
 import com.harusame.template.domain.pojo.AdminChannel;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.harusame.template.domain.pojo.PageResult;
 
 /**
 * @author ggzst
@@ -10,4 +16,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AdminChannelService extends IService<AdminChannel> {
 
+    PageResult<AdminChannel> queryPage(QueryChannelDTO queryChannelDTO);
+
+    void addChannel(AddChannelDTO addChannelDTO);
+
+    void changeChannelStatus(ChangeChannelStatusDTO changeChannelStatusDTO);
+
+    void changeChannelOrder(ChangeChannelOrderDTO changeChannelOrderDTO);
 }

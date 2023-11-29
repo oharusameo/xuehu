@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-@Api(tags = "管理员接口")
+@Api(tags = "管理员模块")
 @RestController
 @RequestMapping("/api/v1/adminUser")
 public class AdminUserApi {

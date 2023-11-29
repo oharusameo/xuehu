@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>admin-service</module>
+        <module>user-service</module>
     </modules>
     <artifactId>xuehu-service</artifactId>
 
@@ -48,11 +49,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!--springCloud dependencies end-->
-        <dependency>
-            <groupId>com.harusame</groupId>
-            <artifactId>xuehu-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.harusame</groupId>
             <artifactId>exception-spring-boot-starter</artifactId>

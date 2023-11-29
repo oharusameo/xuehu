@@ -7,7 +7,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.harusame.template.common.enums.ChannelStatusEnum;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 频道信息表
@@ -15,6 +18,8 @@ import lombok.Data;
  */
 @TableName(value ="admin_channel")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AdminChannel implements Serializable {
     /**
      * 
@@ -44,7 +49,7 @@ public class AdminChannel implements Serializable {
      * 频道状态，1：正常 0：关闭
      */
     @TableField(value = "status")
-    private Integer status;
+    private ChannelStatusEnum status;
 
     /**
      * 创建时间
@@ -60,6 +65,11 @@ public class AdminChannel implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public AdminChannel(Integer id, Integer orderNum) {
+        this.id = id;
+        this.orderNum = orderNum;
+    }
 
     @Override
     public boolean equals(Object that) {

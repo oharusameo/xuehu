@@ -30,12 +30,12 @@ server:
 
 mybatis-plus:
   type-aliases-package: com.harusame.template.domain
-  global-config:
-    db-config:
-      #全局删除字段
-      logic-delete-field: status
-      logic-delete-value: 0
-      logic-not-delete-value: 1
+#  global-config:
+#    db-config:
+#      #全局删除字段
+#      logic-delete-field: status
+#      logic-delete-value: 0
+#      logic-not-delete-value: 1
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #standand 标准输出
 

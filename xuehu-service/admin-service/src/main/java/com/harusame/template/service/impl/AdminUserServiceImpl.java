@@ -52,8 +52,10 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         }
         String addr = IpUtils.getIpAddr();
         log.info("登录成功，用户：{}，地址：{}", user.getUsername(), addr);
-        user.setLoginTime(new Date());
-        adminUserMapper.updateById(user);
+        AdminUser adminUser = new AdminUser();
+        adminUser.setId(user.getId());
+        adminUser.setLoginTime(new Date());
+        adminUserMapper.updateById(adminUser);
         return tokenUtils.loginAndGetToken(user.getId());
     }
 
