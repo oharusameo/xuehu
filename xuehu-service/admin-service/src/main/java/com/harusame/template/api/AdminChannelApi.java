@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @Api(tags = "频道模块")
 @RestController
-@RequestMapping("/api/v1/adminChannel")
+@RequestMapping("/admin-center/api/v1/adminChannel")
 public class AdminChannelApi {
     @Resource
     private AdminChannelService adminChannelService;

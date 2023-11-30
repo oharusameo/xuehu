@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @Api(tags = "管理员模块")
 @RestController
-@RequestMapping("/api/v1/adminUser")
+@RequestMapping("/admin-center/api/v1/adminUser")
 public class AdminUserApi {
     @Resource
     private AdminUserService adminUserService;

@@ -12,6 +12,7 @@
     <modules>
         <module>knife4j-spring-boot-starter</module>
         <module>exception-spring-boot-starter</module>
+        <module>cos-spring-boot-starter</module>
     </modules>
     <artifactId>xuehu-basic</artifactId>
 

@@ -25,11 +25,11 @@ public class SaTokenConfig {
                 // 拦截地址
                 .addInclude("/**")    /* 拦截全部path */
                 // 开放地址
-                .addExclude("/favicon.ico","/api/v1/adminUser/login")
+                .addExclude("/favicon.ico", "/admin-center/api/v1/adminUser/login", "/admin-center/api/v1/adminUser/register")
                 // 鉴权方法：每次访问进入
                 .setAuth(obj -> {
                     // 登录校验 -- 拦截所有路由，并排除/user/doLogin 用于开放登录
-                    SaRouter.match("/**", "/api/v1/adminUser/login", r -> StpUtil.checkLogin());
+                    SaRouter.match("/**", r -> StpUtil.checkLogin());
 
                     // 权限认证 -- 不同模块, 校验不同权限
 /*                    SaRouter.match("/user/**", r -> StpUtil.checkPermission("user"));
