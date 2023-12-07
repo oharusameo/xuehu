@@ -12,6 +12,7 @@
     <modules>
         <module>admin-service</module>
         <module>user-service</module>
+        <module>article-service</module>
     </modules>
     <artifactId>xuehu-service</artifactId>
 

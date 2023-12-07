@@ -13,6 +13,7 @@
     <modules>
         <module>admin-service-domain</module>
         <module>user-service-domain</module>
+        <module>article-service-domain</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

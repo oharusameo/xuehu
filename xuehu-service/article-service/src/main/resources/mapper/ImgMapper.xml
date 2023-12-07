@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.harusame.template.mapper.ImgMapper">
+
+    <resultMap id="BaseResultMap" type="com.harusame.template.domain.pojo.Img">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="imgName" column="img_name" jdbcType="VARCHAR"/>
+            <result property="imgHash" column="img_hash" jdbcType="VARCHAR"/>
+            <result property="bigImgFullPath" column="big_img_full_path" jdbcType="VARCHAR"/>
+            <result property="bigImgSubPath" column="big_img_sub_path" jdbcType="VARCHAR"/>
+            <result property="smallImgFullPath" column="small_img_full_path" jdbcType="VARCHAR"/>
+            <result property="smallImgSubPath" column="small_img_sub_path" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="refCount" column="ref_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,img_name,img_hash,
+        big_img_full_path,big_img_sub_path,small_img_full_path,
+        small_img_sub_path,user_id,create_time,
+        create_user,ref_count
+    </sql>
+</mapper>

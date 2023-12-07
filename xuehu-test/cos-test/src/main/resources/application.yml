@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: cos-test
+
+cos:
+  bucket:
+  secretId:
+  secretKey:
+  region:
+
+
+
+knife4j:
+  enable: true #开启增强
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: template-API文档
+  basePackage: com.harusame.template.api
+  name: harusame
+  url: https://github.com/oharusameo
+  email: ggzst321@outlook.com
+  basic:
+    username: ggzst321
+    password: ggzst321
+#    enable: true
+
+
+server:
+  jetty:
+    threads:
+      #acceptors线程池用于接收http请求
+      acceptors: 4
+      #selectors线程池用于处理http数据包
+      selectors: 8
+      #worker线程池负责调用web业务方法
+      min: 8
+      max: 16
+  port: 8083
+  servlet:
+    #注意！这里还是配置为“/”，否则后续访问swagger接口时，需要多设置这部分的地址
+    context-path: /
+
+
+
+
