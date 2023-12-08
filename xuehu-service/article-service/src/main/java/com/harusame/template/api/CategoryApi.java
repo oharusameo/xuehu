@@ -7,6 +7,7 @@ import com.harusame.template.domain.pojo.Category;
 import com.harusame.template.domain.pojo.Result;
 import com.harusame.template.domain.vo.CategoryVo;
 import com.harusame.template.domain.vo.CategoryVoList;
+import com.harusame.template.domain.vo.ImageVo;
 import com.harusame.template.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Api(tags = "分类模块")
@@ -35,9 +37,9 @@ public class CategoryApi {
     @GetMapping("/getImgListById")
     @ApiOperation("获取分类下的图片列表接口")
     public Result getImgListById(@ApiParam(name = "token", value = "身份认证令牌")
-                                 @RequestHeader String token, @RequestParam Long categoryId) {
-        List<ImageVo> categoryService.getCategoryList();
-        return Result.success(categoryVoList);
+                                 @RequestHeader String token, @RequestParam @NotNull @Valid Long categoryId) {
+        List<ImageVo> imageVoList = categoryService.getImageListByCategory(categoryId);
+        return Result.success(imageVoList);
     }
 
     @PostMapping("/addCategory")

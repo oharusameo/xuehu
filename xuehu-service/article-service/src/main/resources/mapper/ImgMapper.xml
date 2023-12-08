@@ -5,7 +5,7 @@
 <mapper namespace="com.harusame.template.mapper.ImgMapper">
 
     <resultMap id="BaseResultMap" type="com.harusame.template.domain.pojo.Img">
-            <id property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="imgName" column="img_name" jdbcType="VARCHAR"/>
             <result property="imgHash" column="img_hash" jdbcType="VARCHAR"/>
             <result property="bigImgFullPath" column="big_img_full_path" jdbcType="VARCHAR"/>

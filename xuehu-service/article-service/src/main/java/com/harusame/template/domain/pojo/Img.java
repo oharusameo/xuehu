@@ -19,7 +19,7 @@ public class Img implements Serializable {
      * 
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 图片名称

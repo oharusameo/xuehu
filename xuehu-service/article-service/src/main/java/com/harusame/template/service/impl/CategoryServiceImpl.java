@@ -8,6 +8,7 @@ import com.harusame.template.domain.dto.ModifyCategoryDTO;
 import com.harusame.template.domain.pojo.Category;
 import com.harusame.template.domain.vo.CategoryVo;
 import com.harusame.template.domain.vo.CategoryVoList;
+import com.harusame.template.domain.vo.ImageVo;
 import com.harusame.template.enums.CreateCategoryEnum;
 import com.harusame.template.exception.BusinessException;
 import com.harusame.template.service.CategoryService;
@@ -131,6 +132,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>
         ).collect(Collectors.toList());
 
         return new CategoryVoList(totalCount.get(), categoryVoList);
+    }
+
+    @Override
+    public List<ImageVo> getImageListByCategory(Long categoryId) {
+        Integer userId = StpUtil.getLoginIdAsInt();
+        List<ImageVo> imageVoList = categoryMapper.selectImageList(userId, categoryId);
+        if (imageVoList.isEmpty()) {
+            throw new BusinessException("该分类下没有图片");
+        }
+        return imageVoList;
     }
 
 

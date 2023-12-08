@@ -13,6 +13,9 @@ spring:
           - data-id: sa-token-dev.yaml
             group: DEFAULT_GROUP
             refresh: true
+          - data-id: cos-dev.yaml
+            group: DEFAULT_GROUP
+            refresh: true
       discovery:
         namespace: xuehu-service-dev
 

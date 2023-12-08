@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.harusame.template.enums.CreateCategoryEnum;
 import lombok.Data;
@@ -34,7 +35,7 @@ public class Category implements Serializable {
     /**
      * 该分类包含图片id，以json数组形式保存
      */
-    @TableField(typeHandler = JacksonTypeHandler.class)
+    @TableField(typeHandler = FastjsonTypeHandler.class)
     private List<Integer> imageIds;
 
     /**

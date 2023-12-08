@@ -7,6 +7,7 @@ import com.harusame.template.domain.dto.ModifyCategoryDTO;
 import com.harusame.template.domain.pojo.Category;
 import com.harusame.template.domain.vo.CategoryVo;
 import com.harusame.template.domain.vo.CategoryVoList;
+import com.harusame.template.domain.vo.ImageVo;
 
 import java.util.List;
 
@@ -25,4 +26,5 @@ public interface CategoryService extends IService<Category> {
 
     CategoryVoList getCategoryList();
 
+    List<ImageVo> getImageListByCategory(Long categoryId);
 }

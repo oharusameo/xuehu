@@ -7,8 +7,8 @@
     <resultMap id="BaseResultMap" type="com.harusame.template.domain.pojo.Category">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
-        <result property="imageIds" column="image_ids"
-                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="imageIds" column="image_ids" jdbcType="JAVA_OBJECT"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
         <result property="categoryType" column="category_type" jdbcType="TINYINT"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
@@ -22,4 +22,27 @@
         category_type,user_id,create_time,
         update_time,create_user,update_user
     </sql>
+    <update id="updateRelationShip">
+        update t_category
+        set image_ids=case
+                          when json_contains(image_ids, cast(#{image_id} as char)) = 0 then
+                              json_array_append(image_ids, '$', #{image_id})
+                          else image_ids end
+        where id = #{category_id}
+          and user_id = #{user_id}
+    </update>
+<!--        update t_category
+        set image_ids=if(json_contains(image_ids, CAST(#{image_id} as char)),
+                         json_remove(image_ids, CAST(#{image_id} as char)),
+                         json_array_append(image_ids, '$', CAST(#{image_id} as char)))
+        where id = #{category_id}
+          and user_id = #{user_id}-->
+
+    <select id="selectImageList" resultType="com.harusame.template.domain.vo.ImageVo">
+        select mt.id, mt.img_name, mt.big_img_full_path, mt.small_img_full_path
+        from t_category ct
+                 join t_img mt on json_contains(ct.image_ids, CAST(mt.id as char))
+        where ct.id = #{category_id}
+          and ct.user_id = #{user_id};
+    </select>
 </mapper>

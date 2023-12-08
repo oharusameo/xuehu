@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ImageVo {
     private Long id;
-    private String imageName;
+    private String imgName;
     private String bigImgFullPath;
     private String smallImgFullPath;
 
