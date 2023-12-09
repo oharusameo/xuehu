@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -47,9 +48,17 @@ public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img>
     public ImageVo uploadImage(MultipartFile file, Long categoryId) {
         Integer userId = StpUtil.getLoginIdAsInt();
         //1.对文件进行合法性校验
-        FileUtils.checkImageType(file);
+        ByteArrayInputStream byteArrayInputStream;
+        try {
+            byteArrayInputStream = FileUtils.convertToByteArrayInputStream(file.getInputStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        FileUtils.checkImageType(byteArrayInputStream);
         //2.计算图片的哈希值
-        String md5Hash = FileUtils.getMD5Hash(file);
+        byteArrayInputStream.reset();//重置流
+        String md5Hash = FileUtils.getMD5Hash(byteArrayInputStream);
         //3.直接查询图片表中是否存在相同哈希值的记录
         Img img = lambdaQuery().eq(Img::getImgHash, md5Hash).one();
         //3.1已经存在同样的图片，则不上传

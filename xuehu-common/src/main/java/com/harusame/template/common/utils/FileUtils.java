@@ -5,6 +5,8 @@ import cn.hutool.crypto.digest.DigestUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -14,6 +16,17 @@ import java.util.List;
 public class FileUtils {
 
     public static List<String> imgTypeList = Arrays.asList("jpg", "jpeg", "png", "gif");
+
+    public static ByteArrayInputStream convertToByteArrayInputStream(InputStream inputStream) throws IOException {
+        //inputStream->byteArrayInputStream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int length;
+        byte[] bytes = new byte[1024];
+        while ((length = inputStream.read(bytes)) != -1) {
+            byteArrayOutputStream.write(bytes, 0, length);
+        }
+        return new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+    }
 
     public static void checkImageType(MultipartFile image) {
         try (InputStream inputStream = image.getInputStream()) {
