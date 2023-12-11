@@ -5,7 +5,6 @@ import com.harusame.template.domain.dto.DelCategoryDTO;
 import com.harusame.template.domain.dto.ModifyCategoryDTO;
 import com.harusame.template.domain.pojo.Category;
 import com.harusame.template.domain.pojo.Result;
-import com.harusame.template.domain.vo.CategoryVo;
 import com.harusame.template.domain.vo.CategoryVoList;
 import com.harusame.template.domain.vo.ImageVo;
 import com.harusame.template.service.CategoryService;

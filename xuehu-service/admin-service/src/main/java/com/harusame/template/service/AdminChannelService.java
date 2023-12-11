@@ -1,12 +1,11 @@
 package com.harusame.template.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.harusame.template.domain.dto.AddChannelDTO;
 import com.harusame.template.domain.dto.ChangeChannelOrderDTO;
 import com.harusame.template.domain.dto.ChangeChannelStatusDTO;
 import com.harusame.template.domain.dto.QueryChannelDTO;
 import com.harusame.template.domain.pojo.AdminChannel;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.harusame.template.domain.pojo.PageResult;
 
 /**

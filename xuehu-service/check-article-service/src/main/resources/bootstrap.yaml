@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: check-article-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        file-extension: yaml
+        namespace: xuehu-service-dev
+        shared-configs:
+          - data-id: aliyun-dev.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+      discovery:
+        namespace: xuehu-service-dev
+

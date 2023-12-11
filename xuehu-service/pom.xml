@@ -13,6 +13,7 @@
         <module>admin-service</module>
         <module>user-service</module>
         <module>article-service</module>
+        <module>check-article-service</module>
     </modules>
     <artifactId>xuehu-service</artifactId>
 

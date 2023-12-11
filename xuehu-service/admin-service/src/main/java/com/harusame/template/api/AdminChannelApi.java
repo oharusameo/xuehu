@@ -1,6 +1,5 @@
 package com.harusame.template.api;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.harusame.template.domain.dto.AddChannelDTO;
 import com.harusame.template.domain.dto.ChangeChannelOrderDTO;
 import com.harusame.template.domain.dto.ChangeChannelStatusDTO;
