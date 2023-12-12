@@ -65,26 +65,28 @@ public class CheckContentServiceImpl implements CheckContentService {
             throw new BusinessException("响应错误");
         }
         ScanImageResponseBody body = scanImageResponse.getBody();
-        List<ScanImageResponseBody.ScanImageResponseBodyDataResultsSubResults> subResults = body.getData().getResults().get(0).getSubResults();
-        for (ScanImageResponseBody.ScanImageResponseBodyDataResultsSubResults subResult : subResults) {
-            String suggestion = subResult.getSuggestion();
-            String scene = subResult.getScene();
-            String label = subResult.getLabel();
-            log.info("scene:{},label:{},suggestion:{}", scene, label, suggestion);
+        List<ScanImageResponseBody.ScanImageResponseBodyDataResults> results = body.getData().getResults();
+        for (ScanImageResponseBody.ScanImageResponseBodyDataResults result : results) {
+            List<ScanImageResponseBody.ScanImageResponseBodyDataResultsSubResults> subResults = result.getSubResults();
+            for (ScanImageResponseBody.ScanImageResponseBodyDataResultsSubResults subResult : subResults) {
+                String suggestion = subResult.getSuggestion();
+                String scene = subResult.getScene();
+                String label = subResult.getLabel();
+                log.info("scene:{},label:{},suggestion:{}", scene, label, suggestion);
+            }
         }
+
     }
 
     public void checkText(String html) {
         List<ScanTextRequest.ScanTextRequestLabels> labelList = new ArrayList<>();
         labelList.add(new ScanTextRequest.ScanTextRequestLabels()
-                .setLabel("abuse"));
-        labelList.add(new ScanTextRequest.ScanTextRequestLabels()
                 .setLabel("porn"));
-        ScanTextRequest.ScanTextRequestTasks tasks0 = new ScanTextRequest.ScanTextRequestTasks()
-                .setContent(html);
+        labelList.add(new ScanTextRequest.ScanTextRequestLabels()
+                .setLabel("abuse"));
         ScanTextRequest scanTextRequest = new ScanTextRequest()
-                .setTasks(Collections.singletonList(
-                        tasks0
+                .setTasks(Collections.singletonList(new ScanTextRequest.ScanTextRequestTasks()
+                        .setContent(html)
                 ))
                 .setLabels(labelList);
 
@@ -109,6 +111,14 @@ public class CheckContentServiceImpl implements CheckContentService {
             Float rate = result.getRate();
             log.info("label:{},rate:{},suggestion:{}", label, rate, suggestion);
         }
-
+/*        for (ScanTextResponseBody.ScanTextResponseBodyDataElements element : elements) {
+            List<ScanTextResponseBody.ScanTextResponseBodyDataElementsResults> results = element.getResults();
+            for (ScanTextResponseBody.ScanTextResponseBodyDataElementsResults result : results) {
+                String suggestion = result.getSuggestion();
+                String label = result.getLabel();
+                Float rate = result.getRate();
+                log.info("label:{},rate:{},suggestion:{}", label, rate, suggestion);
+            }
+        }*/
     }
 }
