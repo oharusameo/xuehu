@@ -75,17 +75,18 @@ public class CheckContentServiceImpl implements CheckContentService {
     }
 
     public void checkText(String html) {
-        ScanTextRequest.ScanTextRequestLabels labels0 = new ScanTextRequest.ScanTextRequestLabels()
-                .setLabel("abuse");
+        List<ScanTextRequest.ScanTextRequestLabels> labelList = new ArrayList<>();
+        labelList.add(new ScanTextRequest.ScanTextRequestLabels()
+                .setLabel("abuse"));
+        labelList.add(new ScanTextRequest.ScanTextRequestLabels()
+                .setLabel("porn"));
         ScanTextRequest.ScanTextRequestTasks tasks0 = new ScanTextRequest.ScanTextRequestTasks()
                 .setContent(html);
         ScanTextRequest scanTextRequest = new ScanTextRequest()
                 .setTasks(Collections.singletonList(
                         tasks0
                 ))
-                .setLabels(Collections.singletonList(
-                        labels0
-                ));
+                .setLabels(labelList);
 
         ScanTextResponse scanTextResponse = null;
         try {
