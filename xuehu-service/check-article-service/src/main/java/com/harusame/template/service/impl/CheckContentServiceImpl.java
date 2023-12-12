@@ -5,7 +5,6 @@ import com.aliyun.imageaudit20191230.models.*;
 import com.aliyun.tea.TeaException;
 import com.aliyun.teautil.Common;
 import com.aliyun.teautil.models.RuntimeOptions;
-import com.harusame.template.config.AliyunConfig;
 import com.harusame.template.exception.BusinessException;
 import com.harusame.template.service.CheckContentService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +13,10 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -30,24 +31,25 @@ public class CheckContentServiceImpl implements CheckContentService {
         checkText(html);
         //检查图片
         Document document = Jsoup.parse(html);
+        List<String> imgUrllist = new ArrayList<>();
         document.select("img").forEach(img -> {
             String src = img.attr("src");
             log.info("src:{}", src);
-            checkImage(src);
+            imgUrllist.add(src);
         });
-
+        if (!imgUrllist.isEmpty()) {
+            checkImage(imgUrllist);
+        }
     }
 
-    public void checkImage(String imageUrl) {
-        ScanImageRequest.ScanImageRequestTask task0 = new ScanImageRequest.ScanImageRequestTask()
-                .setImageURL(imageUrl);
+    public void checkImage(List<String> imageUrls) {
+        List<ScanImageRequest.ScanImageRequestTask> imgUrlList = imageUrls.stream()
+                .map(url -> new ScanImageRequest.ScanImageRequestTask().setImageURL(url)).collect(Collectors.toList());
         ScanImageRequest scanImageRequest = new ScanImageRequest()
                 .setScene(Collections.singletonList(
                         "porn"
                 ))
-                .setTask(Collections.singletonList(
-                        task0
-                ));
+                .setTask(imgUrlList);
         ScanImageResponse scanImageResponse = null;
         try {
             scanImageResponse = client.scanImageWithOptions(scanImageRequest, new RuntimeOptions());
@@ -87,7 +89,6 @@ public class CheckContentServiceImpl implements CheckContentService {
 
         ScanTextResponse scanTextResponse = null;
         try {
-            // 复制代码运行请自行打印 API 的返回值
             scanTextResponse = client.scanTextWithOptions(scanTextRequest, new RuntimeOptions());
         } catch (Exception _error) {
             TeaException error = new TeaException(_error.getMessage(), _error);

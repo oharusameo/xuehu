@@ -2,7 +2,6 @@ package com.harusame.template.api;
 
 import com.harusame.template.domain.pojo.Result;
 import com.harusame.template.service.CheckContentService;
-import com.harusame.template.service.impl.CheckContentServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,7 +24,6 @@ public class CheckArticleContentApi {
     @ApiOperation("检查文章内容接口")
     public Result checkArticleContent(@RequestBody @NotBlank @Valid @ApiParam("html") String html) {
         checkContentService.checkContent(html);
-
         return Result.success();
     }
 

@@ -17,17 +17,10 @@ public class AliyunConfig {
 
     @Bean
     public Client createClient() throws Exception {
-        /*
-          初始化配置对象com.aliyun.teaopenapi.models.Config
-          Config对象存放AccessKeyId、AccessKeySecret、endpoint等配置
-         */
-        /*com.aliyun.teaopenapi.models*/
         Config config = new com.aliyun.teaopenapi.models.Config()
                 .setAccessKeyId(accessKeyId)
                 .setAccessKeySecret(accessKeySecret)
                 .setEndpoint(endPoint);
-        // 访问的域名
-//        config.endpoint = endPoint;
         return new Client(config);
     }
 }
