@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: article-provider
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        file-extension: yaml
+        namespace: xuehu-service-dev
+      discovery:
+        namespace: xuehu-service-dev
+

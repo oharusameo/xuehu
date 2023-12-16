@@ -13,13 +13,14 @@
         <module>xuehu-common</module>
         <module>xuehu-domain</module>
         <module>xuehu-service</module>
-        <module>xuehu-feign</module>
         <module>xuehu-gateway</module>
         <module>xuehu-test</module>
         <module>xuehu-basic/exception-spring-boot-starter</module>
         <module>xuehu-basic/knife4j-spring-boot-starter</module>
         <module>xuehu-service/admin-service</module>
         <module>xuehu-domain/admin-service-domain</module>
+        <module>xuehu-api</module>
+        <module>xuehu-provider</module>
     </modules>
 
 
@@ -136,12 +137,12 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

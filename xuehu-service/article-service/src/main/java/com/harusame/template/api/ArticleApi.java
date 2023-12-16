@@ -1,5 +1,6 @@
 package com.harusame.template.api;
 
+import com.harusame.template.domain.dto.GetArticleDTO;
 import com.harusame.template.domain.dto.PreReleaseArticleDTO;
 import com.harusame.template.domain.pojo.Result;
 import com.harusame.template.service.ArticleService;
@@ -24,6 +25,13 @@ public class ArticleApi {
                                     @RequestHeader String token, @RequestBody @Valid PreReleaseArticleDTO preReleaseArticleDTO) {
         articleService.preReleaseArticle(preReleaseArticleDTO);
         return Result.successMsg("文章预发布成功");
+    }
+
+    @PostMapping("/getArticleContentById")
+    @ApiOperation("获取文章内容接口")
+    public Result getArticleContentById(@RequestBody @Valid GetArticleDTO getArticleDTO) {
+//        return Result.success(articleService.getArticleContentById(getArticleDTO));
+        return Result.success();
     }
 
 }
